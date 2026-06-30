@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ── */
+:root {
+  /* Light — cool paper white */
+  --ground:        #F3F4F8;
+  --surface:       #FFFFFF;
+  --surface-2:     #ECEEF5;
+  --border:        #DDE0EC;
+  --border-strong: #C3C8DC;
+  --tx:            #0E1117;
+  --tx-2:          #4C556A;
+  --tx-muted:      #8D96AA;
+
+  /* Amber accent — distinctive, warm, focused */
+  --accent:        #C27B00;
+  --accent-fg:     #FFFFFF;
+  --accent-tint:   rgba(194,123,0,0.09);
+
+  --ok:            #0D7F5C;
+  --err:           #C62828;
+
+  --radius:        10px;
+  --radius-sm:     6px;
+  --radius-lg:     14px;
+  --radius-xl:     20px;
+
+  --sidebar-w:     248px;
+  --header-h:      56px;
+  --shadow-sm:     0 1px 3px rgba(14,17,23,.06), 0 1px 2px rgba(14,17,23,.04);
+  --shadow:        0 2px 8px rgba(14,17,23,.08), 0 1px 3px rgba(14,17,23,.06);
+  --shadow-lg:     0 8px 32px rgba(14,17,23,.12), 0 2px 8px rgba(14,17,23,.08);
+  --shadow-xl:     0 20px 60px rgba(14,17,23,.18), 0 4px 16px rgba(14,17,23,.10);
+}
+
+.dark {
+  /* Deep blue-black — like the hour before the screen lights up */
+  --ground:        #0C0E14;
+  --surface:       #13161F;
+  --surface-2:     #1A1D2A;
+  --border:        #232736;
+  --border-strong: #2E3347;
+  --tx:            #E2E5F0;
+  --tx-2:          #7580A0;
+  --tx-muted:      #404660;
+
+  /* Amber — warmer in dark, like a lamp at 2am */
+  --accent:        #F0A500;
+  --accent-fg:     #0C0800;
+  --accent-tint:   rgba(240,165,0,0.10);
+
+  --ok:            #2DD4A0;
+  --err:           #F07070;
+
+  --shadow-sm:     0 1px 3px rgba(0,0,0,.3);
+  --shadow:        0 2px 8px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.3);
+  --shadow-lg:     0 8px 32px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.35);
+  --shadow-xl:     0 20px 60px rgba(0,0,0,.6), 0 4px 16px rgba(0,0,0,.4);
+}
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+}
+
+body {
+  background: var(--ground);
+  color: var(--tx);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic',
+               'Noto Sans JP', sans-serif;
+  min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar          { width: 5px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb    { background: var(--border-strong); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--tx-muted); }
+
+/* ── Selection ── */
+::selection { background: var(--accent-tint); }
+
+/* ── Priority bar ── */
+.priority-bar {
+  position: absolute; left: 0; top: 12px; bottom: 12px;
+  width: 3px; border-radius: 0 2px 2px 0;
+}
+.priority-bar.high    { background: var(--err); }
+.priority-bar.medium  { background: var(--accent); }
+.priority-bar.low     { background: var(--ok); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
